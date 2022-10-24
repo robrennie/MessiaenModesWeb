@@ -1,0 +1,150 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Scale Generator";
+}
+
+<div>
+
+    <h1>Messiaen Scale Generator</h1>
+    <h3>Select Scale Parameters:</h3>
+
+    <form method="post">
+        <table>
+            <tr>
+                <td>
+                    Sharps/Flats:
+                </td>
+                <td>
+                    <select asp-for="ScaleInput.SharpsFlats" id="sharpsflats">
+                        <option value="sharps">Sharps</option>
+                        <option value="flats">Flats</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Root Note:
+                </td>
+                <td>
+                    <select asp-for="ScaleInput.RootNote" id="rootnote"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Max. Notes:
+                </td>
+                <td>
+                    <select asp-for="ScaleInput.MaxNotes" id="maxnotes">
+                        <option value="12">12</option>
+                        <option value="11">11</option>
+                        <option value="10">10</option>
+                        <option value="9">9</option>
+                        <option value="8">8</option>
+                        <option value="7">7</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Min. Notes:
+                </td>
+                <td>
+                    <select asp-for="ScaleInput.MinNotes" id="minnotes">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Max. Chromatic:
+                </td>
+                <td>
+                    <select asp-for="ScaleInput.MaxChromatic" id="maxchromatic">
+                        <option value="11">11</option>
+                        <option value="10">10</option>
+                        <option value="9">9</option>
+                        <option value="8">8</option>
+                        <option value="7">7</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                        <option value="0">0</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Generate Scales" />
+    </form>
+</div>
+
+<hr />
+
+<div>
+    <h3>Generated Scales:</h3>
+    <br />
+    @Html.Raw(Model.Results)
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+
+        // bind Sharps/Flats dropdownlist
+        $(document).ready(setRootNoteDropdown);
+        $("#sharpsflats").change(setRootNoteDropdown);
+
+        function setRootNoteDropdown() {
+            var sharpsflats = $("#sharpsflats").val();
+            if (sharpsflats == "sharps") {
+                $("#rootnote").html(
+                    "<option value='C'>C</option>" +
+                    "<option value='C#'>C#</option>" +
+                    "<option value='D'>D</option>" +
+                    "<option value='D#'>D#</option>" +
+                    "<option value='E'>E</option>" +
+                    "<option value='F'>F</option>" +
+                    "<option value='F#'>F#</option>" +
+                    "<option value='G'>G</option>" +
+                    "<option value='G#'>G#</option>" +
+                    "<option value='A'>A</option>" +
+                    "<option value='A#'>A#</option>" +
+                    "<option value='B'>B</option>");
+            } else {
+                $("#rootnote").html(
+                    "<option value='C'>C</option>" +
+                    "<option value='Db'>Db</option>" +
+                    "<option value='D'>D</option>" +
+                    "<option value='Eb'>Eb</option>" +
+                    "<option value='E'>E</option>" +
+                    "<option value='F'>F</option>" +
+                    "<option value='Gb'>Gb</option>" +
+                    "<option value='G'>G</option>" +
+                    "<option value='Ab'>Ab</option>" +
+                    "<option value='A'>A</option>" +
+                    "<option value='Bb'>Bb</option>" +
+                    "<option value='B'>B</option>");
+            }
+        }
+
+    </script>
+}

@@ -1,0 +1,7 @@
+PublishProfiles/
+.vs/
+obj/
+bin/
+appsettings.Development.json
+*.user
+lib/
